@@ -1,4 +1,4 @@
-package Abstraction.CardRank;
+package javaOOP.Exercises.Abstraction.CardRank;
 
 public class Main {
     public static void main(String[] args) {

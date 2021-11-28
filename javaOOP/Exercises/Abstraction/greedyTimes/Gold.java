@@ -1,4 +1,4 @@
-package Abstraction.greedyTimes;
+package javaOOP.Exercises.Abstraction.greedyTimes;
 
 public class Gold {
     private String Name;

@@ -1,4 +1,4 @@
-package PizzaCalories;
+package javaOOP.Exercises.Encapsulation.PizzaCalories;
 
 public class Topping {
     private String toppingType;

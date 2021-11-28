@@ -1,4 +1,4 @@
-package AnimalFarm;
+package javaOOP.Exercises.Encapsulation.AnimalFarm;
 
 public class Chicken {
     private String name;
@@ -10,7 +10,7 @@ public class Chicken {
     }
 
     private void setName(String name) {
-        if(name.equals(" ") || name.equals(null) || name.equals("")){
+        if(name.equals(" ") || name.equals("")){
             throw new IllegalStateException("Name cannot be empty.");
         }
         this.name = name;

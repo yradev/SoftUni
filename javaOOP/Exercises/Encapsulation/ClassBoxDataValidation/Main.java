@@ -1,4 +1,4 @@
-package ClassBoxDataValidation;
+package javaOOP.Exercises.Encapsulation.ClassBoxDataValidation;
 
 import java.util.Scanner;
 

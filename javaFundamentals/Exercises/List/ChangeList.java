@@ -1,12 +1,12 @@
-package List;
+package javaFundamentals.Exercises.List;
+
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class ChangeList {
-    public class main {
         public static void main(String[] args) {
-            Scanner input = new Scanner(System.in);
+            Scanner input  = new Scanner(System.in);
             List<Integer> Array = Arrays.stream(input.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
 
             String Input = input.nextLine();
@@ -34,5 +34,4 @@ public class ChangeList {
             String EndArray = Array.stream().map(String::valueOf).collect(Collectors.joining(" "));
             System.out.println(EndArray);
         }
-    }
 }

@@ -1,4 +1,4 @@
-package ShoppingSpree;
+package javaOOP.Exercises.Encapsulation.ShoppingSpree;
 
 import java.util.ArrayList;
 import java.util.List;

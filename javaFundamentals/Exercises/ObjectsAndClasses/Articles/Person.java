@@ -1,4 +1,4 @@
-package bgStudent;
+package javaFundamentals.Exercises.ObjectsAndClasses.Articles;
 
 public class Person {
     String Name;

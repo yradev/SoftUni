@@ -1,4 +1,4 @@
-package ClassBoxDataValidation;
+package javaOOP.Exercises.Encapsulation.ClassBoxDataValidation;
 
 public class Box {
     private double length;

@@ -1,4 +1,4 @@
-package Abstraction.jediGalaxy;
+package javaOOP.Exercises.Abstraction.jediGalaxy;
 
 public class Matrix {
     private int[][] matrix;

@@ -1,4 +1,4 @@
-package Abstraction.TrafficLights;
+package javaOOP.Exercises.Abstraction.TrafficLights;
 
 public enum trafficLightsDataBase {
     RED("GREEN"),

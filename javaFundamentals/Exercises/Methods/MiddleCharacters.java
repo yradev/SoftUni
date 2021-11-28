@@ -1,4 +1,4 @@
-package Method;
+package javaFundamentals.Exercises.Methods;
 
 import java.util.*;
 

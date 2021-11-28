@@ -1,4 +1,4 @@
-package Abstraction.CardsWithPower;
+package javaOOP.Exercises.Abstraction.CardsWithPower;
 
 public class Cards {
     private int power;

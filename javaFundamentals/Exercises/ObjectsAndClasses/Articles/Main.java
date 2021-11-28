@@ -1,4 +1,4 @@
-package bgStudent;
+package javaFundamentals.Exercises.ObjectsAndClasses.Articles;
 import java.util.*;
 import java.util.stream.Collectors;
 

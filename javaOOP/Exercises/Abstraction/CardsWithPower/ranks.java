@@ -1,4 +1,4 @@
-package Abstraction.CardsWithPower;
+package javaOOP.Exercises.Abstraction.CardsWithPower;
 
 public enum ranks {
     ACE(14),

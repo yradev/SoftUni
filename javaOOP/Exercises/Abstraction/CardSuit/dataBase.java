@@ -1,4 +1,4 @@
-package Abstraction.CardSuit;
+package javaOOP.Exercises.Abstraction.CardSuit;
 
 public enum dataBase {
     CLUBS,

@@ -1,4 +1,4 @@
-package Abstraction.jediGalaxy;
+package javaOOP.Exercises.Abstraction.jediGalaxy;
 import java.util.Arrays;
 import java.util.Scanner;
 

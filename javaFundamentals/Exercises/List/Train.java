@@ -1,4 +1,5 @@
-package List;
+package javaFundamentals.Exercises.List;
+
 
 import java.util.*;
 import java.util.stream.Collectors;

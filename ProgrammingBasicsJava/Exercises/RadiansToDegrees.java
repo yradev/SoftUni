@@ -1,4 +1,4 @@
-package Exercises;
+package ProgrammingBasicsJava.Exercises;
 import java.util.*;
 public class RadiansToDegrees {
     public static void main(String[] args) {

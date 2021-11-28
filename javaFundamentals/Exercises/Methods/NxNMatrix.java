@@ -1,4 +1,4 @@
-package Method;
+package javaFundamentals.Exercises.Methods;
 
 import java.util.*;
 
@@ -8,7 +8,7 @@ public class NxNMatrix {
         int number = Integer.parseInt(in.nextLine());
         for(int i =0; i<number; i++) {
             ForCicle(number);
-            System.out.println("");
+            System.out.println();
         }
     }
 

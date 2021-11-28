@@ -1,4 +1,4 @@
-package Abstraction.greedyTimes;
+package javaOOP.Exercises.Abstraction.greedyTimes;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

@@ -1,4 +1,4 @@
-package Abstraction.CardRank;
+package javaOOP.Exercises.Abstraction.CardRank;
 
 public enum dataBase {
     ACE,
