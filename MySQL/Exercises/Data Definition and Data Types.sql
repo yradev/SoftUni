@@ -1,6 +1,7 @@
---------------------------------------------------------------------
+/*
 Exercise: 1
---------------------------------------------------------------------
+*/
+
 
 CREATE TABLE `minions`(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
@@ -13,9 +14,10 @@ CREATE TABLE `towns`(
 `name` VARCHAR(45)
 );
 
---------------------------------------------------------------------
+/*
 Exercise: 2
---------------------------------------------------------------------
+*/
+
 
 ALTER TABLE `minions`
 ADD COLUMN `town_id` INT NOT NULL AFTER `age`;
@@ -27,11 +29,10 @@ ADD CONSTRAINT `fk_town_id`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
-
-
---------------------------------------------------------------------
+/*
 Exercise: 3
---------------------------------------------------------------------
+*/
+
 
 INSERT INTO `towns` VALUES (1,'Sofia');
 INSERT INTO `towns` VALUES (2,'Plovdiv');
@@ -42,23 +43,23 @@ INSERT INTO `minions` VALUES (1,'Kevin',22,1);
 INSERT INTO `minions` VALUES (2,'Bob',15,3);
 INSERT INTO `minions` VALUES (3,'Steward',NULL,2);
 
-
---------------------------------------------------------------------
+/*
 Exercise: 4
---------------------------------------------------------------------
+*/
+
 
 TRUNCATE `minions`;
 
---------------------------------------------------------------------
+/*
 Exercise: 5
---------------------------------------------------------------------
+*/
 
 DROP TABLE `minions`;
 DROP TABLE `towns`;
 
---------------------------------------------------------------------
+/*
 Exercise: 6
---------------------------------------------------------------------
+*/
 
 CREATE TABLE `people`(
 `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -77,10 +78,10 @@ CREATE TABLE `people`(
  INSERT INTO `people` (`name`,`height`,`weight`,`gender`,`birthdate`,`biography`) VALUES('Yanko',22.33,44.33,'m','2021-12-31','Softuni is the best!' );
  INSERT INTO `people` (`name`,`height`,`weight`,`gender`,`birthdate`,`biography`) VALUES('Yanko',22.33,44.33,'m','2021-12-31','Softuni is the best!' );
 
-
---------------------------------------------------------------------
+/*
 Exercise: 7
---------------------------------------------------------------------
+*/
+
 
 CREATE TABLE `users`(
 `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -97,27 +98,28 @@ INSERT INTO `users` (`username`,`password`,`last_login_time`,`is_deleted`) VALUE
 INSERT INTO `users` (`username`,`password`,`last_login_time`,`is_deleted`) VALUES ('galio','pass','2021-12-31',false);
 INSERT INTO `users` (`username`,`password`,`last_login_time`,`is_deleted`) VALUES ('pesho','pass','2021-12-31',false);
 
-
---------------------------------------------------------------------
+/*
 Exercise: 8
---------------------------------------------------------------------
+*/
+
 
 ALTER TABLE `users`
 DROP PRIMARY KEY,
 ADD CONSTRAINT pk_users
 PRIMARY KEY (`id`, `username`);
 
---------------------------------------------------------------------
+/*
 Exercise: 9
---------------------------------------------------------------------
+*/
+
 
 ALTER TABLE `users`
 CHANGE COLUMN `last_login_time` `last_login_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-
---------------------------------------------------------------------
+/*
 Exercise: 10
---------------------------------------------------------------------
+*/
+
 
 ALTER TABLE `users`
 DROP PRIMARY KEY,
@@ -125,10 +127,10 @@ ADD CONSTRAINT pk_users
 PRIMARY KEY (`id`),
 CHANGE COLUMN `username` `username` VARCHAR(30) UNIQUE;
 
-
---------------------------------------------------------------------
+/*
 Exercise: 11
---------------------------------------------------------------------
+*/
+
 
 CREATE SCHEMA `moves`;
 CREATE TABLE `directors`(
@@ -185,10 +187,10 @@ INSERT INTO `movies` (`title`) VALUES ('FILM3');
 INSERT INTO `movies` (`title`) VALUES ('FILM4');
 INSERT INTO `movies` (`title`) VALUES ('FILM5');
 
-
---------------------------------------------------------------------
+/*
 Exercise: 12
---------------------------------------------------------------------
+*/
+
 
 
 CREATE TABLE `categories` (
@@ -275,10 +277,9 @@ INSERT INTO `rental_orders`(`car_id`) VALUES
 (2),
 (3);
 
-
---------------------------------------------------------------------
+/*
 Exercise: 13
---------------------------------------------------------------------
+*/
 
 INSERT INTO `towns`(`name`) VALUES
 ('Sofia'),
@@ -300,17 +301,19 @@ INSERT INTO `employees`(`first_name`,`middle_name`,`last_name`,`job_title`,`sala
 ('Georgi','Terziev','Ivanov','CEO',3000,2,'2007-12-09'),
 ('Peter','Pan','Pan','Intern',599.88,3,'2016-08-28');
 
---------------------------------------------------------------------
+/*
 Exercise: 14
---------------------------------------------------------------------
+*/
+
 
 SELECT * FROM `towns`;
 SELECT * FROM `departments`;
 SELECT * FROM `employees`;
 
---------------------------------------------------------------------
+/*
 Exercise: 15
---------------------------------------------------------------------
+*/
+
 
 SELECT * FROM `towns`
 ORDER BY `name` ASC;
@@ -319,10 +322,10 @@ ORDER BY `name` ASC;
 SELECT * FROM `employees`
 ORDER BY `salary` DESC;
 
-
---------------------------------------------------------------------
+/*
 Exercise: 16
---------------------------------------------------------------------
+*/
+
 
 SELECT `name` FROM `towns`
 ORDER BY `name` ASC;
@@ -331,16 +334,16 @@ ORDER BY `name` ASC;
 SELECT `first_name`,`last_name`,`job_title`,`salary` FROM `employees`
 ORDER BY `salary` DESC;
 
---------------------------------------------------------------------
+/*
 Exercise: 17
---------------------------------------------------------------------
+*/
 
 UPDATE `employees`
 SET `salary` = `salary`*1.1 WHERE `id`>0;
 SELECT `salary` FROM `employees`;
 
---------------------------------------------------------------------
+/*
 Exercise: 18
---------------------------------------------------------------------
+*/
 
 DELETE FROM occupancies;
