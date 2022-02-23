@@ -19,15 +19,15 @@ public class DBConnector {
     }
 
     private void connect() {
-//        System.out.print(ENTER_USERNAME);
-//        String userName = scanner.nextLine();
-//        System.out.print(ENTER_PASSWORD);
-//        String password = scanner.nextLine();
-//        System.out.print(ENTER_HOST);
-//        String host = scanner.nextLine();
-//        System.out.print(ENTER_PORT);
-//        int port = Integer.parseInt(scanner.nextLine());
-        this.validator("root", "qwe123456789", "localhost", 3306);
+        System.out.print(ENTER_USERNAME);
+        String userName = scanner.nextLine();
+        System.out.print(ENTER_PASSWORD);
+        String password = scanner.nextLine();
+        System.out.print(ENTER_HOST);
+        String host = scanner.nextLine();
+        System.out.print(ENTER_PORT);
+        int port = Integer.parseInt(scanner.nextLine());
+        this.validator(userName, password, host, port);
     }
 
     private void validator (String userName, String password, String host, int port) {
