@@ -13,7 +13,8 @@ public static final String ENTER_PASSWORD = "Enter your password: ";
 public static final String ENTER_HOST = "Enter your server ip address (like localhost): ";
 public static final String ENTER_PORT = "Enter your server port (like 3306): ";
 public static final String PROGRAM_START = "The program about 'DB Apps Introduction' exercises started successfully!\n";
-public static final String INVALID_NUMBER_PICK = "You can pick only one number from exercises!";
+public static final String INVALID_INPUT = "Your input is invalid!";
+
 
 
 }

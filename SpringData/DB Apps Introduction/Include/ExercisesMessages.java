@@ -31,8 +31,7 @@ public class ExercisesMessages {
     public static final String ADD_MINION_TO_VILLAIN_INVALID = "Unsuccessfully add %s to be minion of %s, because he is!";
     public static final String ENTER_IDS = "Enter your IDs: ";
     public static final String ENTER_ID_FOR_INCREASE = "Enter id that will be increased: ";
-
-
+    public static final String INVALID_INDEX = "Your index is invalid!";
 
 
 

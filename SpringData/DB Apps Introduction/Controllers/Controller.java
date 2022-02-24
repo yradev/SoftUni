@@ -22,17 +22,19 @@ public class Controller {
             }
             try {
                 int pick = Integer.parseInt(input);
-
-                System.out.printf("Selected exercise is %S.%n", exercises.getExerciseName(pick));
-                System.out.println(SEPARATOR);
-                try {
-                    exercises.getExercise(pick).run(dataBase.getConnection());
-                } catch (IllegalArgumentException e) {
-                    System.out.println("ERROR: " + e.getMessage());
+                String exerciseName = exercises.getExerciseName(pick);
+                if (exerciseName==null){
+                    throw new IllegalArgumentException(INVALID_INPUT);
                 }
+                System.out.printf("Selected exercise is %S.%n", exerciseName);
+                System.out.println(SEPARATOR);
+                exercises.getExercise(pick).run(dataBase.getConnection());
+
                 System.out.println(SEPARATOR);
             }catch (NumberFormatException e){
-                System.out.println(INVALID_NUMBER_PICK);
+                System.out.println("ERROR:"  + INVALID_INPUT);
+            }catch (IllegalArgumentException s){
+                System.out.println("ERROR: " + s.getMessage());
             }
         }
         dataBase.close();

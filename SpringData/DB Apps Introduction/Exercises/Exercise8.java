@@ -17,8 +17,8 @@ import static Include.CoreMessages.*;
 
 
 public class Exercise8 implements ExercisesImp {
-    private Scanner scanner;
-    private List<Integer> IDs;
+    private final Scanner scanner;
+    private final List<Integer> IDs;
     private Connection connection;
 
     public Exercise8() {
@@ -52,7 +52,6 @@ public class Exercise8 implements ExercisesImp {
         for (Integer id : IDs) {
             increaseOneAge(id);
         }
-
     }
 
     private void increaseOneAge(int idForReworking) {

@@ -8,19 +8,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static Include.CoreMessages.*;
 import static Include.ExercisesMessages.*;
 
 public class Exercise9 implements ExercisesImp {
     private Connection connection;
     private int id;
+
     @Override
     public void run(Connection connection) {
         this.connection = connection;
-        createProcedure();
-        setID();
-        increaseID();
-        printResult();
-        dropProcedure();
+            createProcedure();
+            setID();
+            increaseID();
+            printResult();
+            dropProcedure();
+
     }
 
     private void printResult() {
@@ -41,7 +44,10 @@ public class Exercise9 implements ExercisesImp {
         try{
             PreparedStatement statement = connection.prepareStatement("call usp_get_older(?)");
             statement.setInt(1,id);
-            statement.execute();
+            if(statement.executeUpdate()==0){
+                dropProcedure();
+                throw new IllegalArgumentException(INVALID_INDEX);
+            }
         }catch (SQLException e){
             throw new IllegalArgumentException(e.getMessage());
         }
@@ -49,7 +55,12 @@ public class Exercise9 implements ExercisesImp {
 
     private void setID() {
         System.out.println(ENTER_ID_FOR_INCREASE);
-        id=Integer.parseInt(new Scanner(System.in).nextLine());
+        try {
+            id = Integer.parseInt(new Scanner(System.in).nextLine());
+        } catch (NumberFormatException e){
+            dropProcedure();
+            throw new IllegalArgumentException(INVALID_INPUT);
+        }
     }
 
     private void dropProcedure() {
