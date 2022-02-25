@@ -10,7 +10,15 @@ import static Include.CoreMessages.*;
 public class Controller {
     public static void run() {
         Scanner scanner = new Scanner(System.in);
-        DBConnector dataBase = new DBConnector();
+        DBConnector dataBase;
+
+        while (true){
+            dataBase = new DBConnector();
+            if(dataBase.isDbConnected()){
+                break;
+            }
+        }
+
         String input;
 
         while(true) {

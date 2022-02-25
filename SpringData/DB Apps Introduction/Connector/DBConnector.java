@@ -12,10 +12,16 @@ import static Include.CoreMessages.*;
 public class DBConnector {
     private Connection connection;
     private Scanner scanner;
+    private boolean dbIsConnected;
 
     public DBConnector(){
+        dbIsConnected = false;
         scanner = new Scanner(System.in);
         this.connect();
+    }
+
+    public boolean isDbConnected() {
+        return dbIsConnected;
     }
 
     private void connect() {
@@ -34,6 +40,7 @@ public class DBConnector {
         try {
             this.connector(userName,password,host,port);
             System.out.print(PROGRAM_START);
+            dbIsConnected = true;
         }catch (SQLException e){
             if(e.getErrorCode()==1049){
                 /* SQLException that we don't have minions_db in our database, now we will create `minions_db` and then return to validation */
