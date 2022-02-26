@@ -7,6 +7,7 @@ public static final String EXERCISE_TEST ="Pick which one of the exercises you w
 public static final String INFO_TEXT = "Type number: %s to test -> %s\n";
 public static final String INVALID_USERNAME_OR_PASSWORD = "You have entered an invalid username or password";
 public static final String DB_CONNECTED = "Connected to DataBase!";
+public static final String DB_IS_CONNECTED_ERROR = "You can connect to DataBase only once!";
 public static final String DB_DISCONNECTED = "Disconnected from DataBase!";
 public static final String DB_MINIONS_CREATED = "Database `minions_db` is successfully created!";
 public static final String ENTER_USERNAME = "Enter your username: ";

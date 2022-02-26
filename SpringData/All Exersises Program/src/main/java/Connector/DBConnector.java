@@ -10,38 +10,32 @@ import static Messages.CoreMessages.*;
 
 
 public class DBConnector {
-    private Connection connection;
-    private Scanner scanner;
-    private boolean dbIsConnected;
+    private static Connection connection;
 
-    public DBConnector(){
-        dbIsConnected = false;
-        scanner = new Scanner(System.in);
-        this.connect();
+    private DBConnector(){}
+
+    public static void connect() {
+        if(connection == null) {
+           Scanner scanner = new Scanner(System.in);
+            System.out.print(ENTER_USERNAME);
+            String userName = scanner.nextLine();
+            System.out.print(ENTER_PASSWORD);
+            String password = scanner.nextLine();
+            System.out.print(ENTER_HOST);
+            String host = scanner.nextLine();
+            System.out.print(ENTER_PORT);
+            int port = Integer.parseInt(scanner.nextLine());
+            DBConnector.validator(userName, password, host, port);
+        }else{
+            throw new IllegalStateException(DB_IS_CONNECTED_ERROR);
+        }
     }
 
-    public boolean isDbConnected() {
-        return dbIsConnected;
-    }
-
-    private void connect() {
-        System.out.print(ENTER_USERNAME);
-        String userName = scanner.nextLine();
-        System.out.print(ENTER_PASSWORD);
-        String password = scanner.nextLine();
-        System.out.print(ENTER_HOST);
-        String host = scanner.nextLine();
-        System.out.print(ENTER_PORT);
-        int port = Integer.parseInt(scanner.nextLine());
-        this.validator(userName, password, host, port);
-    }
-
-    private void validator (String userName, String password, String host, int port) {
+    private static void validator (String userName, String password, String host, int port) {
         try {
-            this.connector(userName,password,host,port);
+            DBConnector.connector(userName,password,host,port);
             System.out.print(PROGRAM_START);
             System.out.println();
-            dbIsConnected = true;
         }catch (SQLException e){
             if(e.getErrorCode()==1049){
                 /* SQLException that we don't have minions_db in our database, now we will create `minions_db` and then return to validation */
@@ -49,7 +43,7 @@ public class DBConnector {
                     Properties props = new Properties();
                     props.setProperty("user", userName);
                     props.setProperty("password", password);
-                    this.connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port, props);
+                    DBConnector.connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port, props);
                     PreparedStatement stmt = connection.prepareStatement("CREATE DATABASE minions_db;");
                     stmt.execute();
                     connection.close();
@@ -69,21 +63,21 @@ public class DBConnector {
         }
     }
 
-    private void connector(String userName, String password, String host, int port) throws SQLException {
+    private static void connector(String userName, String password, String host, int port) throws SQLException {
         Properties props = new Properties();
         props.setProperty("user", userName);
         props.setProperty("password", password);
-        this.connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/minions_db", props);
+        DBConnector.connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/minions_db", props);
         System.out.println(DB_CONNECTED);
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 
-    public void close(){
+    public static void close(){
         try{
-        this.connection.close();
+        DBConnector.connection.close();
             System.out.println(DB_DISCONNECTED);
         }catch (SQLException e){
                 System.out.println(e.getMessage());

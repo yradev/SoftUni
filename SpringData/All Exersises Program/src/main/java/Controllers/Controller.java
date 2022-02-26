@@ -11,30 +11,30 @@ import static Messages.CoreMessages.*;
 public class Controller {
     public static void run() {
         Scanner scanner = new Scanner(System.in);
-        DBConnector dataBase;
 
         while (true){
-            dataBase = new DBConnector();
-            if(dataBase.isDbConnected()){
+            try{
+                DBConnector.connect();
+            }catch (IllegalStateException e){
                 break;
             }
         }
 
        String input;
         while (true) {
-            ExerciseController homeworks = new HomeworksController(dataBase.getConnection());
+            ExerciseController homeworks = new HomeworksController(DBConnector.getConnection());
             homeworks.infoText();
             input = scanner.nextLine();
             if(input.equalsIgnoreCase("Stop")){
                 break;
             }
-
+            
             try {
                 ExerciseController exercises = homeworks.getHomework(Integer.parseInt(input));
                 if(exercises == null){
                     throw new IllegalArgumentException(INVALID_INPUT);
                 }
-                getExercises(exercises, scanner, dataBase);
+                getExercises(exercises, scanner);
             }catch(IllegalArgumentException | NullPointerException n){
                     System.out.println("ERROR: " + INVALID_INPUT);
             }catch (IllegalStateException s)
@@ -42,10 +42,10 @@ public class Controller {
                 break;
             }
         }
-        dataBase.close();
+        DBConnector.close();
     }
 
-    private static void getExercises(ExerciseController exercises, Scanner scanner, DBConnector dataBase) {
+    private static void getExercises(ExerciseController exercises, Scanner scanner) {
         while (true) {
             System.out.println(BACK_COMMAND);
             exercises.infoText();
@@ -66,7 +66,7 @@ public class Controller {
                 }
                 System.out.printf("Selected exercise is %S.%n", exerciseName);
                 System.out.println(SEPARATOR);
-                exercises.getExercise(pick).run(dataBase.getConnection());
+                exercises.getExercise(pick).run(DBConnector.getConnection());
                 System.out.println(SEPARATOR);
             } catch (NumberFormatException | NullPointerException e) {
                 System.out.println("ERROR:" + INVALID_INPUT);
