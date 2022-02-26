@@ -1,7 +1,5 @@
 package Include;
 
-import Include.ExercisesImp;
-
 import java.sql.Connection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -9,20 +7,20 @@ import java.util.Map;
 import static Messages.CoreMessages.INFO_TEXT;
 
 public abstract class ExerciseController {
-    private Map<Integer,String> exerciseNames;
+    private Map<Integer,String> names;
     private Map<Integer, ExerciseController> homeworkPathes;
     private Map<Integer, ExercisesImp> exercisesPathes;
     private Connection connection;
 
     public ExerciseController(Connection connection){
-        exerciseNames = new LinkedHashMap<>();
+        names = new LinkedHashMap<>();
         exercisesPathes = new LinkedHashMap<>();
         homeworkPathes = new LinkedHashMap<>();
         this.connection = connection;
     }
 
     public void infoText() {
-        this.getExerciseNames().forEach((key, value) -> System.out.printf(INFO_TEXT, key, value));
+        this.getNames().forEach((key, value) -> System.out.printf(INFO_TEXT, key, value));
         System.out.println();
     }
 
@@ -32,7 +30,7 @@ public abstract class ExerciseController {
    }
 
    public String getExerciseName(int pick){
-        return exerciseNames.get(pick);
+        return names.get(pick);
     }
 
     public ExerciseController getHomework(int pick){
@@ -40,18 +38,14 @@ public abstract class ExerciseController {
     }
 
 
-    protected Map<Integer, String> getExerciseNames() {
-        return exerciseNames;
-    }
-
-    protected Map<Integer, ExercisesImp> getExercisePathes() {
-        return exercisesPathes;
+    protected Map<Integer, String> getNames() {
+        return names;
     }
 
     protected void inputNames(String ... values){
         int count = 1;
         for (String value : values) {
-            exerciseNames.put(count,value);
+            names.put(count,value);
             count++;
         }
     }
@@ -62,7 +56,13 @@ public abstract class ExerciseController {
             homeworkPathes.put(count,value);
             count ++;
         }
+    }
 
-
+    protected void inputExercisesPathes(ExercisesImp ... values){
+        int count = 1;
+        for (ExercisesImp value : values) {
+            exercisesPathes.put(count,value);
+            count ++;
+        }
     }
 }
