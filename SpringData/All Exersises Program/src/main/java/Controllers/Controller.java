@@ -9,6 +9,10 @@ import static Messages.CoreMessages.*;
 
 
 public class Controller {
+
+    private Controller(){
+    }
+    
     public static void run() {
         Scanner scanner = new Scanner(System.in);
 
