@@ -12,8 +12,8 @@ public class HomeworksController extends ExerciseController {
         super(connection);
         super.inputNames(HOMEWORK1,HOMEWORK2);
         super.inputHomeworkPathes(
-                new Exercises.Homework1.Controllers.Controller(connection),
-                new Exercises.Homework2.Controller.Controller(connection)
+                new Homeworks.Homework1.Controllers.Controller(connection),
+                new Homeworks.Homework2.Controller.Controller(connection)
         );
     }
 
