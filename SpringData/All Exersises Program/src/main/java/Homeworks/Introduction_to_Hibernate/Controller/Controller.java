@@ -1,4 +1,4 @@
-package Homeworks.Homework2.Controller;
+package Homeworks.Introduction_to_Hibernate.Controller;
 
 import Include.ExerciseController;
 

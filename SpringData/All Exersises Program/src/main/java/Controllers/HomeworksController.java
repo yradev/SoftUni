@@ -13,7 +13,7 @@ public class HomeworksController extends ExerciseController {
         super.inputNames(HOMEWORK1,HOMEWORK2);
         super.inputHomeworkPathes(
                 new Homeworks.Java_DB_Apps_Introduction.Controllers.Controller(connection),
-                new Homeworks.Homework2.Controller.Controller(connection)
+                new Homeworks.Introduction_to_Hibernate.Controller.Controller(connection)
         );
     }
 
