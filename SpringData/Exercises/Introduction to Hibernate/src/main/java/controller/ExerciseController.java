@@ -56,6 +56,7 @@ public class ExerciseController {
     }
 
     public static void infoText() {
+        System.out.println(TYPE_INPUT);
         names.forEach((key, value) -> System.out.printf(INFO_TEXT, key, value));
         System.out.println();
     }

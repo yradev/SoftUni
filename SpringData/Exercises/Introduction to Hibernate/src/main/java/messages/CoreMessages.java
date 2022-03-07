@@ -11,5 +11,6 @@ public class CoreMessages {
     public static final String DB_NOT_CONNECTED = "Wrong input or database server is down!";
     public static final String INFO_TEXT = "Type number: %s to test -> %s\n";
     public static final String INVALID_INPUT = "Your input is invalid!\n";
+    public static final String TYPE_INPUT = "Pick which one of exercises you want to test:\n";
 
 }
