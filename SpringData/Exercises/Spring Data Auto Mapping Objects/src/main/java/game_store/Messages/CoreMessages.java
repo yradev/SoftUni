@@ -1,0 +1,55 @@
+package game_store.Messages;
+
+public class CoreMessages {
+    public static String NOT_LOGGED = "You are not logged!\nEnter operation that you want to do (RegisterUser or LoginUser): ";
+    public static String INVALID_INPUT = "Your input is invalid!";
+    public static String INVALID_PASSWORD_LENGTH = "Password length must be at least 6 symbols ";
+    public static String USER_REGISTERED = "User '%s' registered successfully!\n";
+    public static String USER_EXIST = "User '%s' is already exist!";
+    public static String USER_ADMIN = "User '%s' is new administrator!\n";
+    public static String USER_DIDNT_EXIST = "User didnt exist in database!";
+    public static String PASSWORD_INCORRECT = "Your password is incorrect";
+    public static String USER_LOGGED = "You are logged as '%s'!\nEnter 'Logout' to logout from your user!\n";
+    public static String USER_LOGOUT = "Successfully logged out!\n";
+    public static String GAME_DELETED = "Game '%s' deleted successfully!\n";
+    public static String INVALID_INPUT_EMAIL = "Your email input is invalid!";
+    public static String INVALID_INPUT_CONFIRM_PASSWORD = "password confirmation does not match password";
+    public static String INVALID_INPUT_PASSWORD = "Your password input is invalid!\nYour password length must be at least 6 symbols and must contain at least 1 uppercase, 1 lowercase letter and 1 digit";
+    public static String ENTER_EMAIL = "Enter email: ";
+    public static String NOT_ADMIN = "You are not administrator! ";
+    public static String LOGGED_ERROR = "Cont do this while you are logged! ";
+    public static String ENTER_CONFIRM_PASSWORD = "Confirm password: ";
+    public static String ENTER_FULL_NAME = "Enter full name: ";
+    public static String PASSWORD_REQUIREMENTS = "Your password length must be at least 6 symbols and must contain at least 1 uppercase, 1 lowercase letter and 1 digit";
+    public static String ADMIN_CONDITIONS = "As an admin, you have the option to addGame/editGame/deleteGame to the catalog.";
+    public static String ENTER_PASSWORD = "Enter password:";
+    public static String ENTER_TITLE = "Enter title:";
+    public static String ENTER_PRICE = "Enter price:";
+    public static String ENTER_SIZE = "Enter size:";
+    public static String ENTER_ID = "Enter id:";
+    public static String ENTER_TRAILER = "Enter trailer:";
+    public static String ENTER_THUBNAIL_URL = "Enter thubnail URL:";
+    public static String ENTER_DESCRIPTION = "Enter description:";
+    public static String ENTER_RELEASE_DATE= "Enter release date (dd-MM-yyyy): ";
+    public static String INCORRECT_TITLE_UPPER= "Title must start with upper case letter!";
+    public static String INCORRECT_TITLE_LENGTH= "Title length must be between 3 and 100 symbols (inclusively)!";
+    public static String INCORRECT_PRICE= "Price must be a positive number!";
+    public static String INCORRECT_SIZE= "Size must be a positive number!";
+    public static String INCORRECT_TRAILER = "Only videos from YouTube are allowed. Only their ID, which is a string of exactly 11 characters!";
+    public static String INCORRECT_THUMBNAIL_URL = "Thumbnail url should be a plain text starting with http://, https:// ";
+    public static String INCORRECT_DESCRIPTION = "Description must be at least 20 symbols";
+    public static String GAME_ADDED = "Game added successfully!";
+    public static String SELECTED_GAME = "'%s' selected for edit!\nType one of the commands bellow to edit the game:\n\nTitle newValue\nPrice newValue\nSize newValue\nTrailer newValue\nThumbnail_URL newValue\nDescription newValue\nRelease_Date newValue\n\nEnter 'Save' to sava edition!\n";
+    public static String TITLE_EDITED = "Title is changed from '%s' to '%s'!\n";
+    public static String PRICE_EDITED = "Price is changed from '%s' to '%s'!\n";
+    public static String SIZE_EDITED = "Size is changed from '%s' to '%s'!\n";
+    public static String TRAILER_EDITED = "Trailer is changed from '%s' to '%s'!\n";
+    public static String THUMBNAIL_URL_EDITED = "Thumbnail URL is changed from '%s' to '%s'!\n";
+    public static String DESCRIPTION_EDITED = "Description is changed from '%s' to '%s'!\n";
+    public static String RELEASE_DATE_EDITED = "Release date is changed from '%s' to '%s'!\n";
+    public static String GAME_EDITED = "Game '%s' is edited successfully!!\n";
+    public static String PUBLIC_USER_COMMANDS = "Enter 'AllGames' to print titles and price of all games!\nEnter 'DetailsGame' to print details for а single game!\nEnter 'OwnedGames' to print the games ypu have bought!";
+    public static String GAME_DETAILS = "Title: %s\nPrice: %.2f\nDescription: %s\nRelease date: %s\n";
+    public static String GAMELIST_EMPTY = "Game list is empty!";
+
+}
