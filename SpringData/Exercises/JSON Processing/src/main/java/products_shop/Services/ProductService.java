@@ -1,6 +1,6 @@
 package products_shop.Services;
 
 public interface ProductService {
-    void findProductsInRange(int Start, int End);
-    void getCategorisFromProductsCount();
+    String findProductsInRange(int Start, int End);
+    String getCategorisFromProductsCount();
 }

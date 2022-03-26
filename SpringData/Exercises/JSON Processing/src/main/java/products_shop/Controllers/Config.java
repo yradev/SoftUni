@@ -24,4 +24,15 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource(value = "products_shop.properties")
 public class Config {
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
+
+    @Bean
+    public Gson gson(){
+        return new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+    }
 }

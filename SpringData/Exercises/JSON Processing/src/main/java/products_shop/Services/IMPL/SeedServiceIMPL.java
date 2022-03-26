@@ -1,7 +1,6 @@
 package products_shop.Services.IMPL;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,21 +38,19 @@ public class SeedServiceIMPL implements SeedService {
 
     private ModelMapper modelMapper;
     @Autowired
-    public SeedServiceIMPL(UserRepository userRepository, ProductRepository productRepository, CategoryRepository categoryRepository) {
+    public SeedServiceIMPL(Gson gson, UserRepository userRepository, ProductRepository productRepository, CategoryRepository categoryRepository, ModelMapper modelMapper) {
+        this.gson = gson;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
-        modelMapper = new ModelMapper();
-        gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .create();
+        this.modelMapper = modelMapper;
         random = new Random();
     }
 
     @Override
     public void seedUsers() throws FileNotFoundException {
         if(userRepository.count() > 0){
-            throw new IllegalStateException(USERS_DATA_ALREADY_IMPORTED);
+            return;
         }
 
 
@@ -70,9 +67,9 @@ public class SeedServiceIMPL implements SeedService {
     @Override
     public void seedProducts() throws FileNotFoundException {
 
-        if(productRepository.count()>0){
-            throw new IllegalStateException(PRODUCTS_DATA_ALREADY_IMPORTED);
-        }
+       if(productRepository.count()>0){
+           return;
+       }
 
         FileReader fileReader = new FileReader(productsDataPath.toAbsolutePath().toString());
 
@@ -91,8 +88,9 @@ public class SeedServiceIMPL implements SeedService {
     public void seedCategories() throws FileNotFoundException {
 
         if(categoryRepository.count()>0){
-            throw new IllegalStateException(CATEGORIES_DATA_ALREADY_IMPORTED);
+            return;
         }
+
         FileReader fileReader = new FileReader(categoriesDataPath.toAbsolutePath().toString());
 
         List<Category> categoriesImport = Arrays.stream(gson.fromJson(fileReader, CategoriesDTO[].class))

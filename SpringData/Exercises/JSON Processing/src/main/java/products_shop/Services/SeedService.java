@@ -7,23 +7,9 @@ public interface SeedService {
     void seedCategories() throws FileNotFoundException;
     void seedProducts() throws FileNotFoundException;
 
-    default void seedData() throws FileNotFoundException {
-        try {
-            seedUsers();
-        }catch (IllegalStateException e){
-            System.out.println(e.getMessage());
-        }
-
-        try {
-            seedCategories();
-        }catch (IllegalStateException e){
-            System.out.println(e.getMessage());
-        }
-
-        try {
-            seedProducts();
-        }catch (IllegalStateException e){
-            System.out.println(e.getMessage());
-        }
+    default void seedAllData() throws FileNotFoundException {
+        seedUsers();
+        seedCategories();
+        seedProducts();
     }
 }

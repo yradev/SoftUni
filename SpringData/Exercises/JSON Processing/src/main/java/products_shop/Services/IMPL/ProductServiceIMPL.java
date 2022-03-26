@@ -1,7 +1,6 @@
 package products_shop.Services.IMPL;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import products_shop.Entities.Categories.CategorieByProductsCountDTO;
@@ -21,22 +20,20 @@ public class ProductServiceIMPL implements ProductService {
     private Gson gson;
 
     @Autowired
-    public ProductServiceIMPL(ProductRepository productRepository, CategoryRepository categoryRepository) {
+    public ProductServiceIMPL(ProductRepository productRepository, CategoryRepository categoryRepository, Gson gson) {
         this.productRepository = productRepository;
-        gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .create();
+        this.gson = gson;
     }
 
     @Override
-    public void findProductsInRange(int start, int end) {
+    public String findProductsInRange(int start, int end) {
         List<ProductsInRangeDTO> products = productRepository.findProductsBySpecificPrice(BigDecimal.valueOf(start),BigDecimal.valueOf(end));
-        System.out.println(gson.toJson(products));
+        return gson.toJson(products);
     }
 
     @Override
-    public void getCategorisFromProductsCount() {
+    public String getCategorisFromProductsCount() {
         List<CategorieByProductsCountDTO> products = productRepository.findByProductsCount();
-        System.out.println(gson.toJson(products));
+        return gson.toJson(products);
     }
 }
