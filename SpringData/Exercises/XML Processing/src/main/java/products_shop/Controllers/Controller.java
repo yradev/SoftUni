@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 @Component
 public class Controller implements CommandLineRunner {
-    private SeedService seedService;
+    private final SeedService seedService;
     private ExerciseController exerciseController;
     private Scanner scanner;
 

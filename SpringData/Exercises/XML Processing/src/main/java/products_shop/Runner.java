@@ -1,13 +1,13 @@
-package product_shop;
+package products_shop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class XmlProcessingApplication {
+@SpringBootApplication()
+public class Runner {
 
     public static void main(String[] args) {
-        SpringApplication.run(XmlProcessingApplication.class, args);
+        SpringApplication.run(Runner.class, args);
     }
 
 }

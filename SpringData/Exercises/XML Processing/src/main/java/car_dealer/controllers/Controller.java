@@ -1,19 +1,18 @@
-package products_shop.Controllers;
+package car_dealer.controllers;
 
-import products_shop.Services.ProductService;
-import products_shop.Services.SeedService;
+import car_dealer.services.SeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import products_shop.Services.UserService;
 
+import javax.transaction.Transactional;
 import java.util.Scanner;
 
 @Component
 public class Controller implements CommandLineRunner {
-    private SeedService seedService;
-    private ExerciseController exerciseController;
-    private Scanner scanner;
+    private final SeedService seedService;
+    private final ExerciseController exerciseController;
+    private final Scanner scanner;
 
     @Autowired
     public Controller(SeedService seedService, ExerciseController exerciseController) {
@@ -24,13 +23,13 @@ public class Controller implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        seedService.seedAllData();
+        seedService.seedData();
 
-        while (true) {
+        while(true) {
             try {
                 exerciseController.getInputRules();
                 String input = scanner.nextLine();
-                if (input.equalsIgnoreCase("stop")) {
+                if(input.equalsIgnoreCase("stop")){
                     break;
                 }
 
