@@ -5,10 +5,7 @@ import products_shop.Entities.Users.User;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Set;
-
-import static products_shop.Messages.Core.PRODUCTS_NAME_REQ;
 
 @Entity (name = "products")
 public class Product {

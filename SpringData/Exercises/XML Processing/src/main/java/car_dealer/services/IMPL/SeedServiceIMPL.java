@@ -1,23 +1,24 @@
 package car_dealer.services.IMPL;
 
 import car_dealer.entities.cars.Car;
-import car_dealer.entities.cars.CarImportDataDTO;
+import car_dealer.entities.cars.Import.CarsImportDataDTO;
 import car_dealer.entities.customers.Customer;
-import car_dealer.entities.customers.CustomerImportDataDTO;
+import car_dealer.entities.customers.importDTO.CustomersImportDataDTO;
 import car_dealer.entities.parts.Part;
-import car_dealer.entities.parts.PartImportDataDTO;
+import car_dealer.entities.parts.importDTO.PartsImportDataDTO;
 import car_dealer.entities.sales.Discounts;
 import car_dealer.entities.sales.Sale;
 import car_dealer.entities.suppliers.Supplier;
-import car_dealer.entities.suppliers.SupplierImportDataDTO;
+import car_dealer.entities.suppliers.importDataDTO.SuppliersImportDataDTO;
 import car_dealer.repositories.*;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import car_dealer.services.SeedService;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
@@ -32,30 +33,34 @@ public class SeedServiceIMPL implements SeedService {
     private final CarRepository carRepository;
     private final CustomerRepository customerRepository;
     private final SaleRepository saleRepository;
-    private final Gson gson;
     private final ModelMapper modelMapper;
     private Random random;
 
     @Autowired
-    public SeedServiceIMPL(SupplierRepository supplierRepository, PartRepository partRepository, CarRepository carRepository, CustomerRepository customerRepository, SaleRepository saleRepository, Gson gson, ModelMapper modelMapper) {
+    public SeedServiceIMPL(SupplierRepository supplierRepository, PartRepository partRepository, CarRepository carRepository, CustomerRepository customerRepository, SaleRepository saleRepository,ModelMapper modelMapper) {
         this.supplierRepository = supplierRepository;
         this.partRepository = partRepository;
         this.carRepository = carRepository;
         this.customerRepository = customerRepository;
         this.saleRepository = saleRepository;
-        this.gson = gson;
         this.modelMapper = modelMapper;
         random = new Random();
     }
 
     @Override
-    public void seedSuppliers() throws FileNotFoundException {
+    public void seedSuppliers() throws FileNotFoundException, JAXBException {
         if(supplierRepository.count()>0){
             return;
         }
+
         FileReader fileReader = new FileReader(PATH_OF_DATA_SUPPLIERS);
 
-        List<Supplier> suppliers = Arrays.stream(gson.fromJson(fileReader, SupplierImportDataDTO[].class))
+        JAXBContext context = JAXBContext.newInstance(SuppliersImportDataDTO.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        SuppliersImportDataDTO suppliersDTO = (SuppliersImportDataDTO) unmarshaller.unmarshal(fileReader);
+
+        List<Supplier> suppliers = suppliersDTO.getSuppliers().stream()
                 .map(a->modelMapper.map(a,Supplier.class))
                 .collect(Collectors.toList());
 
@@ -65,14 +70,18 @@ public class SeedServiceIMPL implements SeedService {
     }
 
     @Override
-    public void seedParts() throws FileNotFoundException {
+    public void seedParts() throws FileNotFoundException, JAXBException {
         if(partRepository.count()>0){
             return;
         }
-
         FileReader fileReader = new FileReader(PATH_OF_DATA_PARTS);
 
-        List<Part> parts = Arrays.stream(gson.fromJson(fileReader, PartImportDataDTO[].class))
+        JAXBContext context = JAXBContext.newInstance(PartsImportDataDTO.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        PartsImportDataDTO partsDTO = (PartsImportDataDTO) unmarshaller.unmarshal(fileReader);
+
+
+        List<Part> parts = partsDTO.getParts().stream()
                 .map(a->modelMapper.map(a,Part.class))
                 .map(this::getRandomSupplier)
                 .collect(Collectors.toList());
@@ -82,14 +91,17 @@ public class SeedServiceIMPL implements SeedService {
     }
 
     @Override
-    public void seedCars() throws FileNotFoundException {
+    public void seedCars() throws FileNotFoundException, JAXBException {
         if(carRepository.count()>0){
             return;
         }
 
         FileReader fileReader = new FileReader(PATH_OF_DATA_CARS);
 
-        List<Car>cars = Arrays.stream(gson.fromJson(fileReader, CarImportDataDTO[].class))
+        CarsImportDataDTO carsDTO = (CarsImportDataDTO) JAXBContext.newInstance(CarsImportDataDTO.class).createUnmarshaller().unmarshal(fileReader);
+
+
+        List<Car>cars = carsDTO.getCars().stream()
                 .map(a->modelMapper.map(a,Car.class))
                 .map(this::getRandomCars)
                 .collect(Collectors.toList());
@@ -99,14 +111,16 @@ public class SeedServiceIMPL implements SeedService {
     }
 
     @Override
-    public void seedCustomers() throws FileNotFoundException {
+    public void seedCustomers() throws FileNotFoundException, JAXBException {
         if(customerRepository.count()>0){
             return;
         }
-
         FileReader fileReader = new FileReader(PATH_OF_DATA_CUSTOMERS);
 
-        List<Customer>  customers= Arrays.stream(gson.fromJson(fileReader, CustomerImportDataDTO[].class))
+        CustomersImportDataDTO customersDTO = (CustomersImportDataDTO) JAXBContext.newInstance(CustomersImportDataDTO.class).createUnmarshaller().unmarshal(fileReader);
+
+
+        List<Customer>  customers= customersDTO.getCustomers().stream()
                 .map(a->modelMapper.map(a,Customer.class))
                 .collect(Collectors.toList());
 

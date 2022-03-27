@@ -1,5 +1,7 @@
 package car_dealer.services;
 
+import javax.xml.bind.JAXBException;
+
 public interface SupplierService {
-    String getSuppliersWithoutAbroadImportedParts();
+    void getSuppliersWithoutAbroadImportedParts() throws JAXBException;
 }

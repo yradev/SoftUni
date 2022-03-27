@@ -1,20 +1,22 @@
 package products_shop.Services.IMPL;
 
-import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import products_shop.Entities.Categories.CategoriesDTO;
+import products_shop.Entities.Categories.CategoriesSeedDTO;
 import products_shop.Entities.Categories.Category;
 import products_shop.Entities.Products.Product;
-import products_shop.Entities.Products.ProductDTO;
+import products_shop.Entities.Products.ProductsSeedDTO;
 import products_shop.Entities.Users.User;
-import products_shop.Entities.Users.UserSeedDTO;
+import products_shop.Entities.Users.UsersSeedDTP;
 import products_shop.Repositories.CategoryRepository;
 import products_shop.Repositories.ProductRepository;
 import products_shop.Repositories.UserRepository;
 import products_shop.Services.SeedService;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.nio.file.Path;
@@ -26,11 +28,10 @@ import static products_shop.Messages.Core.*;
 @Service
 public class SeedServiceIMPL implements SeedService {
 
-    private Path usersDataPath = Path.of("src","main","resources","Files","products_shop","users.json");
-    private Path categoriesDataPath = Path.of("src","main","resources","Files","products_shop","categories.json");
-    private Path productsDataPath = Path.of("src","main","resources","Files","products_shop","products.json");
+    private Path usersDataPath = Path.of("src","main","resources","Files","products_shop","users.xml");
+    private Path categoriesDataPath = Path.of("src","main","resources","Files","products_shop","categories.xml");
+    private Path productsDataPath = Path.of("src","main","resources","Files","products_shop","products.xml");
 
-    private Gson gson;
     private UserRepository userRepository;
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
@@ -38,8 +39,7 @@ public class SeedServiceIMPL implements SeedService {
 
     private ModelMapper modelMapper;
     @Autowired
-    public SeedServiceIMPL(Gson gson, UserRepository userRepository, ProductRepository productRepository, CategoryRepository categoryRepository, ModelMapper modelMapper) {
-        this.gson = gson;
+    public SeedServiceIMPL( UserRepository userRepository, ProductRepository productRepository, CategoryRepository categoryRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
@@ -48,15 +48,18 @@ public class SeedServiceIMPL implements SeedService {
     }
 
     @Override
-    public void seedUsers() throws FileNotFoundException {
+    public void seedUsers() throws FileNotFoundException, JAXBException {
         if(userRepository.count() > 0){
             return;
         }
-
-
         FileReader fileReader = new FileReader(usersDataPath.toAbsolutePath().toString());
 
-        List<User> usersImport= Arrays.stream(gson.fromJson(fileReader, UserSeedDTO[].class))
+        JAXBContext context = JAXBContext.newInstance(UsersSeedDTP.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        UsersSeedDTP usersDTO =(UsersSeedDTP) unmarshaller.unmarshal(fileReader);
+
+        List<User> usersImport = usersDTO.getUsers().stream()
                 .map(a->modelMapper.map(a,User.class))
                 .collect(Collectors.toList());
 
@@ -65,15 +68,42 @@ public class SeedServiceIMPL implements SeedService {
     }
 
     @Override
-    public void seedProducts() throws FileNotFoundException {
+    public void seedCategories() throws FileNotFoundException, JAXBException {
 
-       if(productRepository.count()>0){
-           return;
-       }
+        if(categoryRepository.count()>0){
+            return;
+        }
+
+        FileReader fileReader = new FileReader(categoriesDataPath.toAbsolutePath().toString());
+
+        JAXBContext context = JAXBContext.newInstance(CategoriesSeedDTO.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        CategoriesSeedDTO categoryDTO =(CategoriesSeedDTO) unmarshaller.unmarshal(fileReader);
+
+        List<Category> categoriesImport = categoryDTO.getCategory().stream()
+                .map(a->modelMapper.map(a, Category.class))
+                .collect(Collectors.toList());
+
+        categoryRepository.saveAll(categoriesImport);
+        System.out.println(CATEGORIES_DATA_IMPORTED);
+    }
+
+    @Override
+    public void seedProducts() throws FileNotFoundException, JAXBException {
+
+        if(productRepository.count()>0){
+            return;
+        }
 
         FileReader fileReader = new FileReader(productsDataPath.toAbsolutePath().toString());
 
-        List<Product> productImport = Arrays.stream(gson.fromJson(fileReader, ProductDTO[].class))
+        JAXBContext context = JAXBContext.newInstance(ProductsSeedDTO.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+
+        ProductsSeedDTO products = (ProductsSeedDTO) unmarshaller.unmarshal(fileReader);
+
+        List<Product> productImport = products.getProducts().stream()
                 .map(a->modelMapper.map(a, Product.class))
                 .map(this::SetSeller)
                 .map(this::SetBuyer)
@@ -82,23 +112,6 @@ public class SeedServiceIMPL implements SeedService {
 
         productRepository.saveAll(productImport);
         System.out.println(PRODUCTS_DATA_IMPORTED);
-    }
-
-    @Override
-    public void seedCategories() throws FileNotFoundException {
-
-        if(categoryRepository.count()>0){
-            return;
-        }
-
-        FileReader fileReader = new FileReader(categoriesDataPath.toAbsolutePath().toString());
-
-        List<Category> categoriesImport = Arrays.stream(gson.fromJson(fileReader, CategoriesDTO[].class))
-                .map(a->modelMapper.map(a, Category.class))
-                .collect(Collectors.toList());
-
-        categoryRepository.saveAll(categoriesImport);
-        System.out.println(CATEGORIES_DATA_IMPORTED);
     }
 
     private Product SetSeller(Product product){

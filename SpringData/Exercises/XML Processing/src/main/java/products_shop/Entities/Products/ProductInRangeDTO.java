@@ -1,13 +1,22 @@
 package products_shop.Entities.Products;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
-public class ProductsInRangeDTO {
+@XmlRootElement(name = "product")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class ProductInRangeDTO {
+    @XmlAttribute
     private String name;
+    @XmlAttribute
     private BigDecimal price;
+    @XmlAttribute
     private String seller;
 
-    public ProductsInRangeDTO(String name, BigDecimal price, String firstName, String lastName) {
+    public ProductInRangeDTO(String name, BigDecimal price, String firstName, String lastName) {
         this.name = name;
         this.price = price;
         if(firstName == null){
@@ -15,6 +24,9 @@ public class ProductsInRangeDTO {
         }else{
             seller = firstName + " " + lastName;
         }
+    }
+
+    public ProductInRangeDTO() {
     }
 
     public String getName() {

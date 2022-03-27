@@ -1,17 +1,34 @@
 package car_dealer.entities.cars;
 
-public class CarImportDataDTO {
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+public class CarFromToyotaDTO {
+    @XmlAttribute
+    private int id;
+    @XmlAttribute
     private String make;
+    @XmlAttribute
     private String model;
+    @XmlAttribute(name = "travelled-distance")
     private long travelledDistance;
 
-    public CarImportDataDTO(String make, String model, int travelledDistance) {
+    public CarFromToyotaDTO() {
+    }
+
+    public CarFromToyotaDTO(int id, String make, String model, long travelledDistance) {
+        this.id = id;
         this.make = make;
         this.model = model;
         this.travelledDistance = travelledDistance;
     }
 
-    public CarImportDataDTO() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMake() {

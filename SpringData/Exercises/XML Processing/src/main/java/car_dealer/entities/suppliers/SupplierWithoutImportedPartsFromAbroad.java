@@ -1,24 +1,32 @@
 package car_dealer.entities.suppliers;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SupplierWithoutImportedPartsFromAbroad {
-    private int Id;
-    private String Name;
+    @XmlAttribute
+    private int id;
+    @XmlAttribute
+    private String name;
+    @XmlAttribute(name = "parts-count")
     private int partsCount;
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public int getPartsCount() {
@@ -30,8 +38,8 @@ public class SupplierWithoutImportedPartsFromAbroad {
     }
 
     public SupplierWithoutImportedPartsFromAbroad(int id, String name, int partsCount) {
-        Id = id;
-        Name = name;
+        this.id = id;
+        this.name = name;
         this.partsCount = partsCount;
     }
 }

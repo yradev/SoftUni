@@ -1,17 +1,22 @@
 package car_dealer.entities.cars;
 
 import car_dealer.entities.parts.Part;
-import com.google.gson.annotations.Expose;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import java.util.Set;
 
+
+@XmlAccessorType(XmlAccessType.NONE)
 public class CarInfoDTO {
-    @Expose
+    @XmlAttribute
     private String Make;
-    @Expose
+    @XmlAttribute
     private String Model;
-    @Expose
+    @XmlAttribute
     private long TravelledDistance;
+
     private Set<Part> parts;
 
     public CarInfoDTO() {

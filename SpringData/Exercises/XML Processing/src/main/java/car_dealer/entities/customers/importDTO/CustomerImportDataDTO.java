@@ -1,11 +1,20 @@
-package car_dealer.entities.customers;
+package car_dealer.entities.customers.importDTO;
 
+import javax.xml.bind.annotation.*;
 import java.time.LocalDateTime;
 
+@XmlRootElement(name = "customer")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CustomerImportDataDTO {
+    @XmlAttribute
     private String name;
+    @XmlElement(name = "birth-date")
     private String birthDate;
+    @XmlElement(name = "is-young-driver")
     private boolean isYoungDriver;
+
+    public CustomerImportDataDTO() {
+    }
 
     public String getName() {
         return name;

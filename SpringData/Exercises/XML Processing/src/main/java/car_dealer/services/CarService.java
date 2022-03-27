@@ -1,6 +1,8 @@
 package car_dealer.services;
 
+import javax.xml.bind.JAXBException;
+
 public interface CarService {
-    String getCarsFromToyotaOrdered();
-    String getCarsWithTheirParts();
+    void getCarsFromToyotaOrdered() throws JAXBException;
+    void getCarsWithTheirParts() throws JAXBException;
 }

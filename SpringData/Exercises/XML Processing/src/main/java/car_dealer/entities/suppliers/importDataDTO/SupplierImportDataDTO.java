@@ -1,8 +1,17 @@
-package car_dealer.entities.suppliers;
+package car_dealer.entities.suppliers.importDataDTO;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "supplier")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SupplierImportDataDTO {
+    @XmlAttribute
 private String name;
+    @XmlAttribute(name = "is-importer")
 private boolean isImporter;
+
+    public SupplierImportDataDTO() {
+    }
 
     public SupplierImportDataDTO(String name, boolean isImporter) {
         this.name = name;

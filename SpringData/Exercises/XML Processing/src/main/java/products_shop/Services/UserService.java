@@ -1,6 +1,8 @@
 package products_shop.Services;
 
+import javax.xml.bind.JAXBException;
+
 public interface UserService {
-    String getUserBySoldProjects();
-    String getUsersByCountSoldProjects();
+    void getUserBySoldProjects() throws JAXBException;
+    void getUsersByCountSoldProjects() throws JAXBException;
 }

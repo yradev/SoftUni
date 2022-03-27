@@ -1,6 +1,8 @@
 package products_shop.Services;
 
+import javax.xml.bind.JAXBException;
+
 public interface ProductService {
-    String findProductsInRange(int Start, int End);
-    String getCategorisFromProductsCount();
+    void findProductsInRange(int Start, int End) throws JAXBException;
+    void getCategorisFromProductsCount() throws JAXBException;
 }

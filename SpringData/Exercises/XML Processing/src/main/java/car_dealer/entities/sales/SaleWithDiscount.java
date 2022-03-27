@@ -1,28 +1,25 @@
 package car_dealer.entities.sales;
 
 import car_dealer.entities.cars.CarInfoDTO;
-import com.google.gson.annotations.Expose;
 
+import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SaleWithDiscount {
-    @Expose
+
+    @XmlElement
     private CarInfoDTO car;
-    @Expose
+    @XmlElement(name = "customer-name")
     private String customerName;
-    @Expose
-    private Discounts Discount;
-    @Expose
+    @XmlElement
+    private Discounts discount;
+    @XmlElement
     private BigDecimal price;
-    @Expose
+    @XmlElement(name = "price-with-discount")
     private BigDecimal priceWithDiscount;
 
     public SaleWithDiscount() {
-    }
-
-    public SaleWithDiscount(CarInfoDTO car, String customerName) {
-        this.car = car;
-        this.customerName = customerName;
     }
 
     public String getCustomerName() {
@@ -34,11 +31,11 @@ public class SaleWithDiscount {
     }
 
     public Discounts getDiscount() {
-        return Discount;
+        return discount;
     }
 
     public void setDiscount(Discounts discount) {
-        Discount = discount;
+        this.discount = discount;
     }
 
     public BigDecimal getPrice() {

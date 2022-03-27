@@ -1,5 +1,7 @@
 package car_dealer.services;
 
+import javax.xml.bind.JAXBException;
+
 public interface SaleService {
-    String getSalesWithDiscount();
+    void getSalesWithDiscount() throws JAXBException;
 }

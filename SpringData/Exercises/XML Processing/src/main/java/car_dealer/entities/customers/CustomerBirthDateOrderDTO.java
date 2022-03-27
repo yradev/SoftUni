@@ -1,25 +1,21 @@
 package car_dealer.entities.customers;
-import car_dealer.entities.sales.Sale;
-import car_dealer.entities.sales.SaleInfoDTO;
 
 
-import java.util.Set;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CustomerBirthDateOrderDTO {
+    @XmlElement
     private String id;
+    @XmlElement
     private String name;
+    @XmlElement(name = "birth-date")
     private String birthDate;
+    @XmlElement(name = "is-youn-driver")
     private boolean isYoungDriver;
-
-    private Set<SaleInfoDTO> sales;
-
-    public Set<SaleInfoDTO> getSales() {
-        return sales;
-    }
-
-    public void setSales(Set<SaleInfoDTO> sales) {
-        this.sales = sales;
-    }
 
     public String getName() {
         return name;

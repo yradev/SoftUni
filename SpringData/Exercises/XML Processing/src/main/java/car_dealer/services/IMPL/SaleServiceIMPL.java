@@ -1,14 +1,16 @@
 package car_dealer.services.IMPL;
 
+import car_dealer.entities.sales.CollectionsDTO.CollectionOfSaleWithDiscount;
 import car_dealer.entities.sales.SaleWithDiscount;
 import car_dealer.repositories.SaleRepository;
 import car_dealer.services.SaleService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,25 +18,25 @@ import java.util.stream.Collectors;
 @Service
 public class SaleServiceIMPL implements SaleService {
     private final SaleRepository saleRepository;
-    private final Gson gson;
     private final ModelMapper modelMapper;
 
 
     @Autowired
-    public SaleServiceIMPL(SaleRepository saleRepository, Gson gson, ModelMapper modelMapper) {
+    public SaleServiceIMPL(SaleRepository saleRepository, ModelMapper modelMapper) {
         this.saleRepository = saleRepository;
-        this.gson = gson;
         this.modelMapper = modelMapper;
     }
 
     @Override
-    public String getSalesWithDiscount() {
-        Gson tempGson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+    public void getSalesWithDiscount() throws JAXBException {
         List<SaleWithDiscount> sales = saleRepository.findAll().stream().map(a->modelMapper.map(a,SaleWithDiscount.class))
                 .map(this::setPrice)
                 .map(this::setPriceWithDiscount)
                 .collect(Collectors.toList());
-        return tempGson.toJson(sales);
+        CollectionOfSaleWithDiscount input = new CollectionOfSaleWithDiscount(sales);
+        Marshaller marshaller = JAXBContext.newInstance(CollectionOfSaleWithDiscount.class).createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
+        marshaller.marshal(input,System.out);
     }
 
     private SaleWithDiscount setPriceWithDiscount(SaleWithDiscount sale) {

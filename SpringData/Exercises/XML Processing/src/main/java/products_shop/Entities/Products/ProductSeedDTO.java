@@ -1,9 +1,17 @@
 package products_shop.Entities.Products;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
-public class ProductDTO {
+@XmlRootElement(name = "product")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class ProductSeedDTO {
+    @XmlElement
     private String name;
+    @XmlElement
     private BigDecimal price;
 
     public String getName() {

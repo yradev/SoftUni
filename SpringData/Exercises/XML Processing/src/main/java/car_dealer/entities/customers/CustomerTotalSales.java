@@ -1,10 +1,17 @@
 package car_dealer.entities.customers;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import java.math.BigDecimal;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CustomerTotalSales {
+    @XmlAttribute(name = "full-name")
     private String fullName;
+    @XmlAttribute(name = "bought-cars")
     private int boughtCars;
+    @XmlAttribute(name = "spend-money")
     private BigDecimal spendMoney;
 
     public CustomerTotalSales(String fullName, int boughtCars, BigDecimal spendMoney) {

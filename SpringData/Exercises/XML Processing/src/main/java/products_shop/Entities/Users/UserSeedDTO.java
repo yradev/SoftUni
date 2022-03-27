@@ -1,8 +1,21 @@
 package products_shop.Entities.Users;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "user")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class UserSeedDTO {
+    @XmlAttribute(name = "first-name")
     private String firstName;
+
+    @XmlAttribute(name = "last-name")
     private String lastName;
+
+    @XmlAttribute
+    private int age;
 
     public String getFirstName() {
         return firstName;
@@ -28,5 +41,4 @@ public class UserSeedDTO {
         this.age = age;
     }
 
-    private int age;
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import javax.xml.bind.JAXBException;
 
 import static car_dealer.messages.core.*;
 
@@ -38,12 +39,12 @@ public class ExerciseController {
 
     }
 
-    public void getExercise(int number) {
+    public void getExercise(int number) throws JAXBException {
         switch (number){
-            case 1 -> System.out.println(productService.findProductsInRange(1,1000));
-            case 2 -> System.out.println(userService.getUserBySoldProjects());
-            case 3 -> System.out.println(productService.getCategorisFromProductsCount());
-            case 4 -> System.out.println(userService.getUsersByCountSoldProjects());
+            case 1 -> productService.findProductsInRange(1,1000);
+            case 2 -> userService.getUserBySoldProjects();
+            case 3 -> productService.getCategorisFromProductsCount();
+            case 4 -> userService.getUsersByCountSoldProjects();
             default -> System.out.println(INVALID_INPUT);
         }
         System.out.println("");
