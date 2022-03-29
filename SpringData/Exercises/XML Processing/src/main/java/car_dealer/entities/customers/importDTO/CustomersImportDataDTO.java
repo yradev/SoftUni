@@ -8,7 +8,7 @@ import java.util.List;
 
 @XmlRootElement(name = "customers")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CustomersImportDataDTO {
+public class                                                                              CustomersImportDataDTO {
     @XmlElement(name = "customer")
     private List<CustomerImportDataDTO> customers;
 
