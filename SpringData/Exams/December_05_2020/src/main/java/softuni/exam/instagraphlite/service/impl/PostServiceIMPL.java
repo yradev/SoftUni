@@ -13,6 +13,7 @@ import softuni.exam.instagraphlite.repository.PostRepository;
 import softuni.exam.instagraphlite.repository.UserRepository;
 import softuni.exam.instagraphlite.service.PostService;
 import softuni.exam.instagraphlite.service.ValidatingService;
+import softuni.exam.instagraphlite.util.XmlParser;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
@@ -55,11 +56,8 @@ public class PostServiceIMPL implements PostService {
 
     @Override
     public String importPosts() throws IOException, JAXBException {
-        Unmarshaller unmarshaller = JAXBContext.newInstance(CollectionOfPosts.class).createUnmarshaller();
 
-        CollectionOfPosts collectionOfPosts = (CollectionOfPosts) unmarshaller.unmarshal(POSTS_DATA.toFile());
-
-        return collectionOfPosts.getPosts().stream()
+        return XmlParser.getFromXml(CollectionOfPosts.class,POSTS_DATA.toFile()).getPosts().stream()
                 .map(this::saveValidRecordToDataBase)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
