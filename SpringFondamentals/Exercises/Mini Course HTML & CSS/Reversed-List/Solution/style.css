@@ -1,0 +1,20 @@
+section{
+    padding: 30px;
+    margin-left: 35%;
+    margin-right: 35%;
+    list-style-position:inside;
+    background-color: #E6E5E5;
+}
+
+section h3{
+color: #234465;
+text-align: center;
+font-size: 25px;
+}
+
+section ol li {
+    font-size: 23px;
+    padding: 10px;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}

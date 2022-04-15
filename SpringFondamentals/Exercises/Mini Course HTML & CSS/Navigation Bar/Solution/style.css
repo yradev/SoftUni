@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+}
+
+nav{
+    background: #D3D3D3;
+    text-align: center;
+    padding: 3px;
+}
+header nav ul li{
+    display: inline-block;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    font-size: 23px;
+    padding: 10px;
+    color: #009900;
+}
+
+header nav ul li a:hover{
+background: #009900;
+color: white;
+border-radius: 10px;
+}
