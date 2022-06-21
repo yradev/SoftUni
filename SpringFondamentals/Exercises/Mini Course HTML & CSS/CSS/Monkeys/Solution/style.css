@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+Body{
+    background-color: #FAEBC8;
+    font-family: Open Sans;
+}
+
+section{
+    background-color: white;
+    margin: 100px 200px;
+    padding: 50px 200px;
+    text-align: center;
+     -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+     box-shadow: 5px 5px 15px 5px #000000;
+}
+
+article{
+    display: inline-block;
+    padding: 50px;
+    width: 250px;
+}

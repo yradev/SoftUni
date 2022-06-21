@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+body{
+    font-family: Open Sans, sans-serif;
+    margin: 0 600px 600px;
+    background-color: black;
+    color: rgb(214, 116, 114);
+}
+
+header{
+    text-align: center;
+    margin: 0;
+}
+
+nav{
+    background-color: white;
+    padding: 1px;
+}
+
+nav ul li{
+display: inline-block;
+}
+
+nav ul li a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(214, 116, 114)
+}
+
+hr{
+    width: 60px;
+    height: 2px;
+}
+
+h1{
+    text-align: center;
+}
+
+.center{
+    text-align: center;
+}
+
+.divCenter{
+    padding-top: 10%;
+    color: white;
+}
+
+.perfectTouch{
+    padding: 1px 60px;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),url(../Requirements-and-Resources/Images/header-flower.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    text-align: center;
+    height: 300px;
+}
+
+.colorPink{
+    background-color: #DC9594;
+    border: #DC9594;
+}
+
+.yourPreffer{
+    text-align: center;
+    margin: 0;
+    padding : 10px 50px;
+    color: white;
+    background-color: rgb(214, 116, 114);
+}
+
+button{
+    color: rgb(214, 116, 114);
+    border-radius: 5px;
+    border-color: rgb(214, 116, 114);
+    font-size: 12px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.howWork{
+    background-color: white;
+    color: black;
+    padding: 1px 0;
+}
+
+
+article{
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    margin: 10px;
+}
+
+footer{
+    background-color: rgb(214, 116, 114);
+    color: white;
+    font-size: small;
+    text-align: center;
+    padding: 10px;
+}

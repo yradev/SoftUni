@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
+body{
+    margin: 100px 600px;
+    font-family: 'Lato', sans-serif;
+}
+
+section{
+    display: inline-block;
+    width: 300px;
+    height: 500px;
+}
+
+.leftFooter{
+    padding-top: 120%;
+}
+
+.leftSide{
+    float: left;
+    background: linear-gradient(rgba(56, 104, 156, 0.5), rgba(73, 33, 45, 0.8)),url(../Requirements-and-Resources/Images/peak.jpg); 
+    background-size: cover;
+    border-radius: 15px 0 0 15px;
+    color: white;
+    text-align: center;
+}
+
+.rightSide{
+    text-align: left;
+    font-size: 15px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+}
+
+form{
+    padding: 50px 50px;
+}
+
+form label{
+    color: rgb(218, 217, 220);
+    width: 100%;
+}
+
+input[type=text]{
+margin-bottom: 20px;
+width: 100%;
+text-align: left;
+border-top: none;
+border-left: none;
+border-right: none;
+color: rgb(118, 115, 115);
+}
+
+input[type=submit]{
+    float: left;
+    padding: 7px 10px;
+    margin: 0 10px 0 0;
+    background-color: #38082A;
+    border-color: #38082A;
+    color: white;
+    border-radius: 5px;
+}
+
+.signIn{
+    font-size: 18px;
+    color: #38082A;
+    text-decoration: none;
+}
