@@ -1,0 +1,22 @@
+<header>
+
+    <nav class="navbar navbar-expand-lg bg-nav rounded">
+        <a class="nav-link text-white active h5" href="/">Shopping List App</a>
+        <a th:if="${@currentSession.username != null}" class="nav-link text-white active h5" th:href="@{/product/add}">Add Product</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav row">
+                <li class="nav-item col-md-4">
+                    <a th:if="${@currentSession.username == null}" class="nav-link text-white active h5" th:href="@{/user/login}">Login</a>
+                </li>
+                <li class="nav-item col-md-4">
+                    <a th:if="${@currentSession.username == null}" class="nav-link text-white active h5"  th:href="@{/user/register}">Register</a>
+                    <a th:if="${@currentSession.username != null}"  class="nav-link text-white active h5" th:href="@{/user/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
