@@ -35,7 +35,7 @@ public class SongController {
     public String getAdd(){
         if(!currentSession.isLogged()){
             return "redirect:/";
-        }
+        }//Users (logged in) can access Add Song page.
         return "song-add";
     }
 

@@ -14,7 +14,7 @@
                     <div class="mt-1 rounded badge-info">
                         <img class="mr-1" th:src="*{url}" alt="Pop" width="30px" height="30px">
                         <div th:each="song : *{songs}">
-                        <span  th:text="| ${song.performer} - ${song.title} - ${song.duration} min|"></span>
+                        <span  th:text="| ${song.performer} - ${song.title} (${song.hours}:${song.minutes} min)|"></span>
                         <a class="ml-3 text-danger" th:href="@{/user/addSong(id = ${song.id})}">Add</a>
                         </div>
                     </div>
@@ -25,14 +25,14 @@
             <div class="col-6 mt-1 mb-1" th:object="${currentLogedUsser}">
                 <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">My Playlist</h3>
 
-                <h6 class="mySticky bg-gray text-dark  mb-0 mt-0" th:text="|${totalMinutes} min. total|"></h6>
+                <h6 class="mySticky bg-gray text-dark  mb-0 mt-0" th:text="|${currentLogedUsser.totalMinutes} min. total|"></h6>
 
                 <div class="bg-dark rounded m-auto" style="height: 68.5vh; overflow: auto">
                     <table class="table table-striped table-dark">
                         <tr th:each="o : *{songs}">
                             <th scope="row"><img class="mr-2 " src="/img/playlist.png" alt="Playlist" width="30px" height="30px"></th>
                             <td>
-                                <span th:text="|${o.performer} - ${o.title} - ${o.duration}|"></span>
+                                <span th:text="|${o.performer} - ${o.title} (${o.hours}:${o.minutes} min)|"></span>
                             </td>
                         </tr>
                     </table>

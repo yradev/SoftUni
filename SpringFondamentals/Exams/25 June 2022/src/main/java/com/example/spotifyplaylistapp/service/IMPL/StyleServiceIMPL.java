@@ -1,5 +1,6 @@
 package com.example.spotifyplaylistapp.service.IMPL;
 
+import com.example.spotifyplaylistapp.model.dto.SongViewDTO;
 import com.example.spotifyplaylistapp.model.dto.StyleViewDTO;
 import com.example.spotifyplaylistapp.model.entity.Style;
 import com.example.spotifyplaylistapp.model.entity.Styles;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,10 +44,25 @@ public class StyleServiceIMPL implements StyleService {
 
     @Override
     public List<StyleViewDTO> getAllStyles() {
-        List<StyleViewDTO> styleViewDTO = styleRepository.findAll().stream()
+        return styleRepository.findAll().stream()
                 .map(style->modelMapper.map(style,StyleViewDTO.class))
-                .peek(style -> style.setUrl(String.format("/img/%s.png",style.getName().name().toLowerCase())))
+                .peek(style ->
+                        {
+                          style.setUrl(String.format("/img/%s.png",style.getName().name().toLowerCase()));
+                          Set<SongViewDTO> songs = style.getSongs().stream()
+                                  .peek(song -> {
+                                      int seconds = song.getDuration();
+                                      int secondsTominutes = seconds/60;
+                                      int hours = secondsTominutes/60;
+                                      int minutes = secondsTominutes%60;
+
+                                      song.setHours(hours);
+                                      song.setMinutes(minutes);
+
+                                  }).collect(Collectors.toSet());
+
+                          style.setSongs(songs);
+                        })
                 .collect(Collectors.toList());
-        return styleViewDTO;
     }
 }

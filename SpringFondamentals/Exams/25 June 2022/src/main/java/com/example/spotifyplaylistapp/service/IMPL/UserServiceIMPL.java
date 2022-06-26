@@ -1,7 +1,9 @@
 package com.example.spotifyplaylistapp.service.IMPL;
 
+import com.example.spotifyplaylistapp.model.dto.SongViewDTO;
 import com.example.spotifyplaylistapp.model.dto.UserLoginDTO;
 import com.example.spotifyplaylistapp.model.dto.UserRegisterDTO;
+import com.example.spotifyplaylistapp.model.dto.UserViewDTO;
 import com.example.spotifyplaylistapp.model.entity.Song;
 import com.example.spotifyplaylistapp.model.entity.User;
 import com.example.spotifyplaylistapp.repository.SongRepository;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceIMPL implements UserService {
@@ -61,8 +64,23 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
-    public User getCurrentUser() {
-        return userRepository.findUserByUsername(currentSession.getUsername());
+    public UserViewDTO getCurrentUser() {
+        UserViewDTO user = modelMapper.map(userRepository.findUserByUsername(currentSession.getUsername()),UserViewDTO.class);
+        Set<SongViewDTO> mySongs = user.getSongs().stream()
+                .peek(song -> {
+                    int seconds = song.getDuration();
+                    int secondsToMinutes = seconds/60;
+
+                    song.setHours(secondsToMinutes/60);
+                    song.setMinutes(secondsToMinutes%60);
+
+                }).collect(Collectors.toSet());
+
+        int totalMinutes = user.getSongs().stream().mapToInt(SongViewDTO::getMinutes).sum();
+        user.setTotalMinutes(totalMinutes);
+        user.setSongs(mySongs);
+
+        return user;
     }
 
     @Override

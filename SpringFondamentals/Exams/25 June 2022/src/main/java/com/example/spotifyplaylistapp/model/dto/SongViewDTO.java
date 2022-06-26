@@ -5,6 +5,8 @@ public class SongViewDTO {
     private String performer;
     private String title;
     private int duration;
+    private int minutes;
+    private int hours;
 
     public SongViewDTO(){}
 
@@ -38,5 +40,21 @@ public class SongViewDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
     }
 }

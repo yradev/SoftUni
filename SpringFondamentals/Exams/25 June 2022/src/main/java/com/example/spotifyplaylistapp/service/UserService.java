@@ -2,6 +2,7 @@ package com.example.spotifyplaylistapp.service;
 
 import com.example.spotifyplaylistapp.model.dto.UserLoginDTO;
 import com.example.spotifyplaylistapp.model.dto.UserRegisterDTO;
+import com.example.spotifyplaylistapp.model.dto.UserViewDTO;
 import com.example.spotifyplaylistapp.model.entity.Song;
 import com.example.spotifyplaylistapp.model.entity.User;
 
@@ -10,7 +11,7 @@ public interface UserService {
     boolean login(UserLoginDTO userLoginDTO);
     void logout();
 
-    User getCurrentUser();
+    UserViewDTO getCurrentUser();
 
     void addSong(long songID);
 

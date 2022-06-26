@@ -26,7 +26,7 @@ public class UserController{
     public String getRegister(){
         if(currentSession.isLogged()){
             return "redirect:/";
-        } //Guest (not logged in) users can access Register page.
+        } //Guest (not logged in) users can access the Register page.
         return "register";
     }
 
@@ -51,7 +51,7 @@ public class UserController{
     public String getLogin(){
         if(currentSession.isLogged()){
             return "redirect:/";
-        }//Guest (not logged in) users can access Login page.
+        }//Guest (not logged in) users can access the Login page.
 
         return "login";
     }
@@ -84,9 +84,8 @@ public class UserController{
     public String logout(){
         if(!currentSession.isLogged()){
             return "redirect:/";
-        }
+        } // Users (logged in) can access Logout functionality.
         userService.logout();
-        //Users (logged in) can access Logout functionality.
         return "redirect:/";
     }
 

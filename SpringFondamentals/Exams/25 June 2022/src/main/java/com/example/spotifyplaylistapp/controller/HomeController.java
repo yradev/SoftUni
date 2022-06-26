@@ -26,16 +26,14 @@ public class HomeController {
         public ModelAndView gotHomePage(ModelAndView modelAndView){
             if(!currentSession.isLogged()){
                 modelAndView.setViewName("index");
-                //Guest (not logged in) users can access Index page.
+                //Guest (not logged in) users can access the Index page.
                 return modelAndView;
             }
-            //Users (logged in) can access Home page.
+            //Users (logged in) can access the Home page.
 
-            int totalMinutes = userService.getCurrentUser().getSongs().stream().mapToInt(Song::getDuration).sum();
             modelAndView.setViewName("home");
             modelAndView.addObject("findAll",styleService.getAllStyles());
             modelAndView.addObject("currentLogedUsser",userService.getCurrentUser());
-            modelAndView.addObject("totalMinutes",totalMinutes);
             return modelAndView;
     }
 }
