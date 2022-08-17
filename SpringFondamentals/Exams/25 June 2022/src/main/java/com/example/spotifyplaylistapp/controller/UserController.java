@@ -98,7 +98,6 @@ public class UserController{
     @GetMapping("/clean")
     public String clean(){
         userService.clear();
-
         return "redirect:/";
     }
 }

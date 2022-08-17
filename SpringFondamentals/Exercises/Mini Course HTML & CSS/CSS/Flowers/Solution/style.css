@@ -50,7 +50,7 @@ h1{
 
 .perfectTouch{
     padding: 1px 60px;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),url(../Requirements-and-Resources/Images/header-flower.png);
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url(../Requirements-and-Resources/Images/header-flower.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
