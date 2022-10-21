@@ -12,7 +12,13 @@ function solve() {
     const originalCost = document.querySelector('#original-cost');
     const sellingPrice = document.querySelector('#selling-price');
 
-    if (make.value == '' || model.value == '' || year.value == '' || fuel.value == '' || Number(originalCost.value) >= Number(sellingPrice.value) || Number(originalCost.value) == 0 || Number(sellingPrice.value) == 0) {
+    if (make.value == '' 
+    || model.value == '' 
+    || year.value == '' 
+    || fuel.value == '' 
+    || Number(originalCost.value) >= Number(sellingPrice.value) 
+    || Number(originalCost.value) == 0 
+    || Number(sellingPrice.value) == 0) {
       return;
     }
 
