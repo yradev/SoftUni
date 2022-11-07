@@ -1,21 +1,13 @@
-import { render as oldRender } from '../api/lib.js';
-import { template as dashboardView } from '../src/views/dashboard.js';
-import { loginView } from '../src/views/login.js';
-import { clearUserData, getUserData } from './session.js';
-import { registerView } from '../src/views/register.js';
-
-
-
-function render(view) {
-    oldRender(view, document.querySelector('#main-content'));
-}
+import { loginView } from '../views/login.js';
+import { getUserData } from './session.js';
+import { registerView } from '../views/register.js';
+import { logout } from './auth.js';
 
 export const views = {
-    home() { return render(dashboardView()) },
+    home() {  },
     login() { loginView(); },
-    logout() { clearUserData(); update(); },
+    logout() { logout(); },
     register() { registerView(); }
-
 }
 
 export const accessibility = {
