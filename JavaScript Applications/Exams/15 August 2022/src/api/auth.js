@@ -7,8 +7,8 @@ export async function login(email, password) {
     try {
         const data = { email, password };
 
-        if (email == '' || password == '') {
-            throw new Error('Fields cannot be empty!')
+        if(Object.entries(data).some(a=>a[1]=='')){
+            throw new Error('You have empty fields!');
         }
         const response = await post('/users/login', data);
 
@@ -25,8 +25,8 @@ export async function register(email, password) {
     try {
         const data = { email, password };
 
-        if (email == '' || password == '') {
-            throw new Error('Fields cannot be empty!')
+        if(Object.entries(data).some(a=>a[1]=='')){
+            throw new Error('You have empty fields!');
         }
         const response = await post('/users/register', data);
 
