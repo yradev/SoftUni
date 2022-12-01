@@ -8,15 +8,13 @@ import { createPageView } from '../views/createPage.js';
 import { searchView } from '../views/searchPage.js';
 
 export const views = {
-    home() { homeView(); },
-    login() { loginView(); },
-    logout() { logout(); },
-    register() { registerView(); },
-    dashboard() { dashboardView(); },
-    createPage() { createPageView() },
-    search() { searchView() },
-
-
+    home: () => homeView(),
+    login: () => loginView(),
+    logout: () =>  logout(),
+    register: () =>  registerView(),
+    dashboard: () => dashboardView(),
+    createPage: () =>  createPageView() ,
+    search: () => searchView(),
 }
 
 export const accessibility = {

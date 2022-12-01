@@ -1,5 +1,5 @@
 import { html, render } from '../api/lib.js';
-import { deleteShoe } from '../api/pair.js';
+import { deleteShoe, getShoeById } from '../api/pair.js';
 import { getUserData } from '../api/session.js';
 import { editPage } from './editPage.js';
 
@@ -29,8 +29,8 @@ const template = (imageUrl, brand, model, release, designer, value) => html`
         </section>
 `;
 
-export function detailsView(shoe) {
-  render(template(shoe.imageUrl, shoe.brand, shoe.model, shoe.release, shoe.designer, shoe.value), document.querySelector('main'));
+export async function detailsView(tShoe) {
+  render(template(tShoe.imageUrl, tShoe.brand, tShoe.model, tShoe.release, tShoe.designer, tShoe.value), document.querySelector('main'));
   const actionButtons = document.querySelector('#action-buttons');
 
   const editButton = document.createElement('a');
@@ -45,20 +45,22 @@ export function detailsView(shoe) {
   deleteButton.id = 'delete-btn'
   deleteButton.textContent = 'Delete';
 
-  if (getUserData() != null) {
-    if (getUserData()._id == shoe._ownerId) {
+  const shoe = await getShoeById(tShoe._id);
+
+  const user = getUserData();
+  
+    if (user!= null && user._id == shoe._ownerId) {
       actionButtons.appendChild(editButton);
       actionButtons.appendChild(deleteButton);
-    }
-  }
 
-  deleteButton.addEventListener('click', () => {
-    if (confirm('Press ok to delete this shoe!')) {
-      deleteShoe(shoe._id);
+      deleteButton.addEventListener('click', () => {
+        if (confirm('Press ok to delete this shoe!')) {
+          deleteShoe(shoe._id);
+        }
+      });
+    
+      editButton.addEventListener('click', () => {
+        editPage(shoe);
+      });
     }
-  });
-
-  editButton.addEventListener('click', () => {
-    editPage(shoe);
-  });
 };

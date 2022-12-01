@@ -52,3 +52,11 @@ export function getShoe(query){
         console.log(err.message);
     }
 }
+
+export function getShoeById(id) {
+    try{
+       return get(`/data/shoes/${id}`);
+    }catch(err){
+        alert(err.message);
+    }
+}
