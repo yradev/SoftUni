@@ -1,5 +1,6 @@
 import { addNewBook } from '../api/book.js';
 import { html, render } from '../api/lib.js';
+import { getOptionsFromForms } from '../api/utill.js';
 
 
 const template = () => html`
@@ -50,13 +51,6 @@ export function createPageView(){
     document.querySelector('#create-form').addEventListener('submit',(event)=>{
         event.preventDefault();
 
-        const formData = new FormData(event.target);
-
-        const options = {};
-        for (const data of formData.entries()) {
-            options[data[0]] = data[1];
-        }
-
-        addNewBook(options);
+        addNewBook(getOptionsFromForms(event.target));
     });
 };

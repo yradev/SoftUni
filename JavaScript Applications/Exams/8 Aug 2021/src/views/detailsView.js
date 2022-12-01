@@ -57,6 +57,7 @@ export async function detailsView(id) {
             });
 
         } else {
+
             const liked = await amILiked(id);
 
             if (!liked) {
@@ -70,10 +71,9 @@ export async function detailsView(id) {
                 a.addEventListener('click', () => {
                     newLike(id);
                     a.remove();
-                    detailsView(id);                    
+                    detailsView(id);
                 });
             }
         }
     }
-
 };

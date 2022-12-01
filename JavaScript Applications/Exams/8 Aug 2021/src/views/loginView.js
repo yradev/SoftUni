@@ -1,5 +1,6 @@
 import { html, render } from '../api/lib.js';
 import { login } from '../api/auth.js';
+import { getOptionsFromForms } from '../api/utill.js';
 
 
 const template = () => html`
@@ -33,13 +34,6 @@ export function loginView(){
     document.querySelector('#login-form').addEventListener('submit',(event)=>{
         event.preventDefault();
 
-        const formData = new FormData(event.target);
-
-        const options = {};
-        for (const data of formData.entries()) {
-            options[data[0]] = data[1];
-        }
-
-        login(options);
+        login(getOptionsFromForms(event.target));
     });
 };

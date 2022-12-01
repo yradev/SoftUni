@@ -1,5 +1,6 @@
 import { html, render } from '../api/lib.js';
 import { register } from '../api/auth.js';
+import { getOptionsFromForms } from '../api/utill.js';
 
 const template = () => html`
 <!-- Register Page ( Only for Guest users ) -->
@@ -36,12 +37,8 @@ export function registerView() {
 
     document.querySelector('#register-form').addEventListener('submit', (event) => {
         event.preventDefault();
-        const formData = new FormData(event.target);
 
-        const options = {};
-        for (const data of formData.entries()) {
-            options[data[0]] = data[1];
-        }
+        const options = getOptionsFromForms(event.target);
 
         if(options['password']!=options['confirm-pass']){
             alert('Passwords are not equal');

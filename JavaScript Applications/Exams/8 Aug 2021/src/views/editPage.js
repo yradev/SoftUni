@@ -1,5 +1,6 @@
 import { editBook } from '../api/book.js';
 import { html, render } from '../api/lib.js';
+import { getOptionsFromForms } from '../api/utill.js';
 
 
 const template = (title,description,imageUrl,type) => html`
@@ -52,13 +53,6 @@ export function editPageView(pageDetails){
     document.querySelector('#edit-form').addEventListener('submit',(event)=>{
         event.preventDefault();
 
-        const formData = new FormData(event.target);
-
-        const options = {};
-        for (const data of formData.entries()) {
-            options[data[0]] = data[1];
-        }
-
-        editBook(options,pageDetails._id);
+        editBook(getOptionsFromForms(event.target),pageDetails._id);
     });
 };
