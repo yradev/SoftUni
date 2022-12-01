@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Theater</title>
+    <link href="../styles/style.css" type="text/css" rel="stylesheet">
+    <script type="module" src="/src/app.js"></script>
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <!--Navigation-->
+        <header>
+            <nav>
+                <a href="/">Theater</a>
+                <ul>
+                    <!--Only users-->
+                    <div id="user">
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/create-event">Create Event</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </div>
+                    <div id="guest">
+                        <!--Only guest-->
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="content"></main>
+        <footer>
+            <div>© 2021
+                <h3>JS Application</h3>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
