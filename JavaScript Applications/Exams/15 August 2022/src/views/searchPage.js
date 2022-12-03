@@ -68,6 +68,7 @@ export function searchView() {
           if(getUserData()==null){
             document.querySelector('.details-btn').style.display = 'none';
           }
+          
           div.querySelector('.details-btn').addEventListener('click',()=>{
             detailsView(a);
           });
