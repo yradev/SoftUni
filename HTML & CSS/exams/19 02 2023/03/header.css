@@ -1,0 +1,76 @@
+
+header{
+    background: url(images/landing-photo.jpg) no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+    padding: 1% 7% 0 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header .navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+header .navigation .left{
+    font-weight: bold;
+}
+
+header .navigation .right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40%;
+}
+
+header .main {
+    display: flex;
+    flex-direction: column;
+    height: 55%;
+    width: 30%;
+}
+
+header .main .top{
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+header .main .desc{
+    font-size: large;
+    padding-bottom: 25px;
+}
+
+header .main .context{
+    font-size: medium;
+    opacity: 0.6;
+}
+
+
+header .main .expore-homes{
+    width: 40%;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 8px;
+    margin: 30px 0;
+    font-weight: bold;
+}
+
+header a{
+    color: black;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+.navigation .catched{
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    padding: 0 15px;
+}

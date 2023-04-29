@@ -1,0 +1,46 @@
+footer{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 25px;
+}
+
+footer .first{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+footer .second{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+footer .third{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+footer .four{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+footer a{
+    font-size: medium;
+    opacity: 0.7;
+}
+footer .four .icons{
+    display: flex;
+    flex-direction: row;
+}
+
+.icons i{
+    padding: 0 5px;
+
+}
